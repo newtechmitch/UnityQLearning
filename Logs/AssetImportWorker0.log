@@ -160,3 +160,45 @@ AssetImportParameters requested are different than current active one (requested
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 65968.898588 seconds.
+  path: Assets/Scenes/QLearn.unity
+  artifactKey: Guid(2cda990e2423bbf4892e6590ba056729) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/QLearn.unity using Guid(2cda990e2423bbf4892e6590ba056729) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f29a70eca25931853f5439a97e64647d') in 0.009374 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.349566 seconds.
+  path: Assets/Adam_Streck_2D_sprite_sheet_with_tiling_square_sprites._Hand_dr_484462be-07e3-4a1b-a17e-161563f3f027.png
+  artifactKey: Guid(43ab286357ab8f0499dc7b96875cb1d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Adam_Streck_2D_sprite_sheet_with_tiling_square_sprites._Hand_dr_484462be-07e3-4a1b-a17e-161563f3f027.png using Guid(43ab286357ab8f0499dc7b96875cb1d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8c4f4c4efb143aef690703c8f15267b3') in 0.399058 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 353.342271 seconds.
+  path: Assets
+  artifactKey: Guid(00000000000000001000000000000000) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets using Guid(00000000000000001000000000000000) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '79842766b460edbeab6a34051e857a80') in 0.006730 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 7.808060 seconds.
+  path: Assets/Sprites
+  artifactKey: Guid(019049fb18552544bab4d784de6a5694) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites using Guid(019049fb18552544bab4d784de6a5694) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ed5548adf3ccd532cb1c47b19a1f80dc') in 0.005341 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 6.648216 seconds.
+  path: Assets/Sprites/grass.png
+  artifactKey: Guid(bfdbe706bade6db4dbb1debcc53f57d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/grass.png using Guid(bfdbe706bade6db4dbb1debcc53f57d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '03e89578d0e49aa127f045dea4530ac9') in 0.017177 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 6.378253 seconds.
+  path: Assets/Sprites/water.png
+  artifactKey: Guid(3c8bfd372b625bd4b8c95b18239b01fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/water.png using Guid(3c8bfd372b625bd4b8c95b18239b01fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a800b944e34e771d331d1073d5b51dc2') in 0.015668 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 448.024364 seconds.
+  path: Assets/Sprites/robot.png
+  artifactKey: Guid(fb3dc7018176af246b188fdb05d88fb1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/robot.png using Guid(fb3dc7018176af246b188fdb05d88fb1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3a7102fff228afa7b8d6a65a97091617') in 0.015317 seconds 
