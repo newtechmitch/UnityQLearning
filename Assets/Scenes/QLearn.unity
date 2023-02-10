@@ -176,6 +176,7 @@ MonoBehaviour:
   waterTile: {fileID: 1786635774153693572, guid: c6adc143060cd324ebc6bd558012e80c, type: 3}
   awardTile: {fileID: 5253715000765392767, guid: 4e03cd19c132b7045b3c64a1f738649a, type: 3}
   agentPrefab: {fileID: 574924309324392827, guid: 82d4fe6995ab4654d9a6d45f2477f2ca, type: 3}
+  gamma: 0.9
 --- !u!224 &43905806 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2418798545612920842, guid: 4e03cd19c132b7045b3c64a1f738649a, type: 3}

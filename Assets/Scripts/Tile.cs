@@ -5,14 +5,14 @@ public class Tile : MonoBehaviour
 {
     [SerializeField] private Text rewardText;
     [SerializeField] private Text qValueText;
-
-    private void Start()
+    
+    public void SetReward(int reward)
     {
-        
+        rewardText.text = reward.ToString();
     }
-
-    private void Update()
+    
+    public void SetQValue(float qValue)
     {
-        
+        qValueText.text = qValue.ToString("F4");
     }
 }
