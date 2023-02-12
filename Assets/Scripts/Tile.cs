@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,7 +7,7 @@ public class Tile : MonoBehaviour
 {
     [SerializeField] private TileEnum tileType;
     [SerializeField] private Text rewardText;
-    [SerializeField] private Text qValueText;
+    [SerializeField] private List<Text> qValueTexts;
     
     private double _reward;
     public double Reward
@@ -23,8 +24,9 @@ public class Tile : MonoBehaviour
 
     public void SetQValue(ActionEnum action, double value)
     {
-        _qValues[(int)action] = value;
-        qValueText.text = _qValues.Average().ToString("F4");
+        var index = (int) action;
+        _qValues[index] = value;
+        qValueTexts[index].text = value.ToString("F4");
     }
 
     public double GetQValue(ActionEnum action)
