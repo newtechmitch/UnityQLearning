@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Tile : MonoBehaviour
+public class QTile : MonoBehaviour
 {
     [SerializeField] private TileEnum tileType;
     [SerializeField] private Text rewardText;
@@ -41,7 +41,7 @@ public class Tile : MonoBehaviour
         set
         {
             _currentPos = value;
-            transform.localPosition = TileGrid.LogicalToLocalPos(_currentPos.X, _currentPos.Y);
+            transform.localPosition = TilePos.LogicalToLocalPos(_currentPos);
         }
     }
 }

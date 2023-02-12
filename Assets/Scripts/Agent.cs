@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,15 +5,18 @@ public class Agent : MonoBehaviour
 {
     public static ActionEnum RndAction()
         => (ActionEnum) Random.Range(0, 4);
+    
+    public static readonly List<ActionEnum> Actions = new()
+        { ActionEnum.Left, ActionEnum.Right, ActionEnum.Up, ActionEnum.Down };
 
-    private TilePos _currentPos;
-    public TilePos CurrentPos
+    private QTile _state;
+    public QTile State
     {
-        get => _currentPos;
+        get => _state;
         set
         {
-            _currentPos = value;
-            transform.localPosition = TileGrid.LogicalToLocalPos(_currentPos.X, _currentPos.Y);
+            _state = value;
+            transform.localPosition = TilePos.LogicalToLocalPos(_state.CurrentPos);
         }
     }
 }
