@@ -3,7 +3,7 @@
 using System.Linq;
 using UnityEngine;
 
-public class QLearning : MonoBehaviour
+public class QLearn : MonoBehaviour
 {
     private const int START_X = 2;
     private const int START_Y = 6;
@@ -35,7 +35,7 @@ public class QLearning : MonoBehaviour
         {
             var s = _agent.State;
             var a = Agent.RndAction();
-            var sPrime = tileGrid.GetTargetTile(s, a);
+            var sPrime = tileGrid.GetTargetTile<QTile>(s, a);
             var q = s.GetQValue(a);
             var r = sPrime.Reward;
             var qMax = Agent.Actions.Select(aPrime => sPrime.GetQValue(aPrime)).Max();
@@ -55,6 +55,6 @@ public class QLearning : MonoBehaviour
 
     private void ResetAgentPos()
     {
-        _agent.State = tileGrid.GetStartTile(START_X, START_Y);
+        _agent.State = tileGrid.GetTileByCoords<QTile>(START_X, START_Y);
     }
 }

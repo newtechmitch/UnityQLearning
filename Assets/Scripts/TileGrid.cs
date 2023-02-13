@@ -6,13 +6,13 @@ using UnityEngine;
 
 public class TileGrid : MonoBehaviour
 {
-    [SerializeField] private QTile grassTile;
-    [SerializeField] private QTile waterTile;
-    [SerializeField] private QTile awardTile;
+    [SerializeField] private BaseTile awardTile;
+    [SerializeField] private BaseTile grassTile;
+    [SerializeField] private BaseTile waterTile;
 
-    [SerializeField] private float waterReward = -1;
-    [SerializeField] private float grassReward = 0;
     [SerializeField] private float awardReward = 1;
+    [SerializeField] private float grassReward = 0;
+    [SerializeField] private float waterReward = -1;
     
     private readonly TileEnum[,] _map =
     {
@@ -20,19 +20,19 @@ public class TileGrid : MonoBehaviour
         { TileEnum.Water, TileEnum.Grass, TileEnum.Grass, TileEnum.Grass, TileEnum.Water },
         { TileEnum.Water, TileEnum.Grass, TileEnum.Award, TileEnum.Grass, TileEnum.Water },
         { TileEnum.Water, TileEnum.Grass, TileEnum.Grass, TileEnum.Grass, TileEnum.Water },
-        { TileEnum.Water, TileEnum.Water, TileEnum.Grass, TileEnum.Water, TileEnum.Water },
+        { TileEnum.Water, TileEnum.Grass, TileEnum.Water, TileEnum.Water, TileEnum.Water },
         { TileEnum.Water, TileEnum.Grass, TileEnum.Grass, TileEnum.Grass, TileEnum.Water },
         { TileEnum.Water, TileEnum.Grass, TileEnum.Grass, TileEnum.Grass, TileEnum.Water },
         { TileEnum.Water, TileEnum.Grass, TileEnum.Grass, TileEnum.Grass, TileEnum.Water },
         { TileEnum.Water, TileEnum.Water, TileEnum.Water, TileEnum.Water, TileEnum.Water }
     };
 
-    private QTile[,] _tiles;
+    private BaseTile[,] _tiles;
 
-    private const int BOARD_WIDTH = 5;
-    private const int BOARD_HEIGHT = 9;
+    public const int BOARD_WIDTH = 5;
+    public const int BOARD_HEIGHT = 9;
 
-    private QTile TilePrefabByType(TileEnum tileEnum)
+    private BaseTile TilePrefabByType(TileEnum tileEnum)
         => tileEnum switch
         {
             TileEnum.Water => waterTile,
@@ -50,13 +50,13 @@ public class TileGrid : MonoBehaviour
             _ => 0
         };
     
-    public QTile GetTargetTile(QTile source, ActionEnum action)
-        => TileByPos(GetTargetPos(source.CurrentPos, action));
+    public T GetTargetTile<T>(T source, ActionEnum action) where T: BaseTile
+        => (T) TileByPos(GetTargetPos(source.CurrentPos, action));
     
-    public QTile GetStartTile(int x, int y)
-        => _tiles[y, x];
+    public T GetTileByCoords<T>(int x, int y) where T: BaseTile
+        => (T) _tiles[y, x];
 
-    private QTile TileByPos(TilePos pos)
+    private BaseTile TileByPos(TilePos pos)
         => _tiles[pos.Y, pos.X];
 
     // Bounded move on a grass, otherwise stay
@@ -79,7 +79,7 @@ public class TileGrid : MonoBehaviour
 
     public void GenerateTiles()
     {
-        _tiles = new QTile[BOARD_HEIGHT, BOARD_WIDTH];
+        _tiles = new BaseTile[BOARD_HEIGHT, BOARD_WIDTH];
         for (var y = 0; y < BOARD_HEIGHT; y++)
         {
             for (var x = 0; x < BOARD_WIDTH; x++)
@@ -88,7 +88,6 @@ public class TileGrid : MonoBehaviour
                 var tilePrefab = TilePrefabByType(tileType);
                 var newTile = Instantiate(tilePrefab, transform);
                 newTile.Reward = RewardByType(tileType);
-                Agent.Actions.ForEach(a => newTile.SetQValue(a, 0));
                 newTile.CurrentPos = new TilePos(x, y);
                 _tiles[y, x] = newTile;
             }
