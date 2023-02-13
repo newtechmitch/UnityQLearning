@@ -16,7 +16,7 @@ public class Agent : MonoBehaviour
         set
         {
             _state = value;
-            transform.localPosition = TilePos.LogicalToLocalPos(_state.CurrentPos);
+            transform.localPosition = TileGrid.LogicalToLocalPos(_state.CurrentPos);
         }
     }
 }

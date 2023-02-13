@@ -17,7 +17,7 @@ public class QTile : BaseTile
     {
         var index = (int)action;
         _qValues[index] = value;
-        qValueTexts[index].text = value.ToString("F4");
+        qValueTexts[index].text = value.ToString("F3");
         qValueTexts[index].color = TextColor(value);
     }
 

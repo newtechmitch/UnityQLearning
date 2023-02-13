@@ -172,6 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72359436cfc74469ab84ef8ea422160f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  labelPrefab: {fileID: 4724165490873767682, guid: a2309b99ded6c934395fce82ccb609a3, type: 3}
   awardTile: {fileID: 5253715000765392767, guid: 4e03cd19c132b7045b3c64a1f738649a, type: 3}
   grassTile: {fileID: 5095750179070983685, guid: b90af16a7af41b740b6e7dfad94e9817, type: 3}
   waterTile: {fileID: 1786635774153693572, guid: c6adc143060cd324ebc6bd558012e80c, type: 3}
@@ -370,7 +371,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

@@ -20,9 +20,9 @@ public class Bellman : MonoBehaviour
     {
         if (automatic || Input.GetKeyDown(KeyCode.Space))
         {
-            for (var x = 0; x < TileGrid.BOARD_WIDTH; x++)
+            for (var y = 0; y < TileGrid.BOARD_HEIGHT; y++)
             {
-                for (var y = 0; y < TileGrid.BOARD_HEIGHT; y++)
+                for (var x = 0; x < TileGrid.BOARD_WIDTH; x++)
                 {
                     var tile = tileGrid.GetTileByCoords<VTile>(x, y);
                     tile.Value = Agent.Actions

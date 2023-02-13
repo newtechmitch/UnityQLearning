@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -35,7 +33,7 @@ public class BaseTile : MonoBehaviour
         set
         {
             _currentPos = value;
-            transform.localPosition = TilePos.LogicalToLocalPos(_currentPos);
+            transform.localPosition = TileGrid.LogicalToLocalPos(_currentPos);
         }
     }
 }

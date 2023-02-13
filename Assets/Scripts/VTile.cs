@@ -1,7 +1,4 @@
-﻿// Created by Dr. Adam Streck, 2023, adam.streck@gmail.com
-
-
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class VTile : BaseTile
