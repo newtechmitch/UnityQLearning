@@ -10,7 +10,7 @@ mergeAll.sh
 /[Bb]uilds/
 /[Mm]odels/
 /[Ss]ummaries/
-/VEnv_ML-14/
+/[Uu]serSettings/
 /Assets/AssetStoreTools*
 /Assets/ShaderForge*
 /results/
