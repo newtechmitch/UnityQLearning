@@ -197,7 +197,7 @@ foreach (var a in Agent.Actions)
 }
 
 // Now pick action based on updated Q-values and move
-var chosen = GetAction(s);
+var chosen = PickAction(s);
 _agent.State = tileGrid.GetTargetTile(s, chosen);
 ```
 
@@ -281,7 +281,7 @@ After enough steps, the agent's policy converges to always selecting the maximum
 ### Implementation in Unity — `QLearn.cs` (action selection)
 
 ```csharp
-private ActionEnum GetAction(QTile state)
+private ActionEnum PickAction(QTile state)
     => Random.Range(0f, 1f) > _epsilon
         ? Agent.Actions.Shuffle().OrderBy(state.GetQValue).Last()  // exploit
         : Agent.RndAction();                                         // explore
@@ -320,6 +320,11 @@ The simulation is built in Unity and consists of the following components:
 | `VTile` | Extends `BaseTile`; displays a single state value `V(s)` (used by Bellman demo) |
 | `QTile` | Extends `BaseTile`; stores and displays four Q-values (used by Q-Learning demo) |
 | `TileGrid` | Manages the 8 × 5 grid; handles tile generation, coordinate lookup, and movement rules |
+| `Agent` | MonoBehaviour representing the agent; holds the current `QTile` state and provides action helpers |
+| `Bellman` | Runs the iterative Bellman value-propagation demo (scene `Bellman`) |
+| `QLearn` | Runs the Q-Learning demo with ε-greedy exploration (scene `QLearn`) |
+| `Extensions` | Utility class providing a `Shuffle` extension method for tie-breaking |
+| `ScreenShot` | Debug utility — press `S` to save a timestamped screenshot |
 
 
 ### Movement Rules — `TileGrid.cs`

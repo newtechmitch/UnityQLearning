@@ -44,11 +44,16 @@ public class QLearn : MonoBehaviour
         }
         yield return null;
     }
-    
-    private ActionEnum GetAction(QTile state)
-        => Random.Range(0f, 1f) > _epsilon 
-            ? Agent.Actions.Shuffle().OrderBy(state.GetQValue).Last() 
+
+    private ActionEnum PickAction(QTile state)
+    {
+        ActionEnum action =  Random.Range(0f, 1f) > _epsilon
+            ? Agent.Actions.Shuffle().OrderBy(state.GetQValue).Last()
             : Agent.RndAction();
+        
+        _epsilon = Mathf.Max(epsilonEnd, _epsilon - epsilonDecay);
+        return action;
+    }
 
     private void Update()
     {
@@ -89,9 +94,8 @@ public class QLearn : MonoBehaviour
             }
 
             // Now pick action based on updated Q-values and move
-            ActionEnum chosen = GetAction(s);
+            ActionEnum chosen = PickAction(s);
             _agent.State = tileGrid.GetTargetTile(s, chosen);
-            _epsilon = Mathf.Max(epsilonEnd, _epsilon - epsilonDecay);
         }
         Debug.Log($"Step {_counter++}, epsilon {_epsilon}");
     }
