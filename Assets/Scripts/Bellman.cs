@@ -40,8 +40,7 @@ public class Bellman : MonoBehaviour
         {
             for (var x = 0; x < TileGrid.BOARD_WIDTH; x++)
             {
-                var tile = tileGrid.GetTileByCoords<VTile>(x, y);
-                tile.Step();
+                tileGrid.GetTileByCoords<VTile>(x, y).Step();
             }
         }
     }

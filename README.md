@@ -183,16 +183,25 @@ The TD term combines the **immediate reward** with the **best possible future re
 ### Implementation in Unity — `QLearn.cs` (update step)
 
 ```csharp
-var s      = _agent.State;
-var a      = GetAction(s);
-var q      = s.GetQValue(a);
-var sPrime = tileGrid.GetTargetTile(s, a);
-var r      = sPrime.Reward;
-var qMax   = Agent.Actions.Select(aPrime => sPrime.GetQValue(aPrime)).Max();
-var td     = r + gamma * qMax - q;
-s.SetQValue(a, q + alpha * td);
-_agent.State = sPrime;
+var s = _agent.State;
+
+// Update Q-values for ALL actions from current state
+foreach (var a in Agent.Actions)
+{
+    var q      = s.GetQValue(a);
+    var sPrime = tileGrid.GetTargetTile(s, a);
+    var r      = sPrime.Reward;
+    var qMax   = Agent.Actions.Select(sPrime.GetQValue).Max();
+    var td     = r + gamma * qMax - q;
+    s.SetQValue(a, q + alpha * td);
+}
+
+// Now pick action based on updated Q-values and move
+var chosen = GetAction(s);
+_agent.State = tileGrid.GetTargetTile(s, chosen);
 ```
+
+On every step, the Q-values for **all four actions** from the current state are updated using the TD rule. Only after all updates are applied does the agent select and execute an action (via ε-greedy). This ensures the agent always acts on fully up-to-date Q-values.
 
 ---
 
@@ -200,12 +209,11 @@ _agent.State = sPrime;
 
 The **Q-table** is a data structure that stores a Q-value for every `(state, action)` pair. It is initialised to `0` and updated incrementally as the agent explores.
 
-```
-         Left    Right    Up     Down
-(0,1)  [  0.0    0.0     0.0    0.0  ]
-(1,1)  [  0.0    0.0     0.0    0.0  ]
- ...
-```
+| (X, Y) | Left | Right | Up | Down |
+|--------|------|-------|----|------|
+| (0,1)  | 0.0  | 0.0   | 0.0| 0.0  |
+| (1,1)  | 0.0  | 0.0   | 0.0| 0.0  |
+| ...    | ...  | ...   | ...| ...  |
 
 - **Rows** = states
 - **Columns** = actions

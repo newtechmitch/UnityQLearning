@@ -331,10 +331,10 @@ MonoBehaviour:
   alpha: 0.1
   epsilonStart: 1
   epsilonEnd: 0.05
-  epsilonDecay: 0.001
+  epsilonDecay: 0.005
   gamma: 0.9
   automatic: 0
-  stepsPerSecond: 15
+  stepsPerSecond: 10
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

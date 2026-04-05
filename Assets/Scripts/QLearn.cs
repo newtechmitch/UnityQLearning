@@ -75,15 +75,22 @@ public class QLearn : MonoBehaviour
         }
         else
         {
-            var s = _agent.State;
-            var a = GetAction(s);
-            var q = s.GetQValue(a);
-            var sPrime = tileGrid.GetTargetTile(s, a);
-            var r = sPrime.Reward;
-            var qMax = Agent.Actions.Select(aPrime => sPrime.GetQValue(aPrime)).Max();
-            var td = r + gamma * qMax - q;
-            s.SetQValue(a, q + alpha * td);
-            _agent.State = sPrime;
+            QTile s = _agent.State;
+
+            // Update Q-values for ALL actions from current state
+            foreach (var a in Agent.Actions)
+            {
+                double q = s.GetQValue(a);
+                QTile sPrime = tileGrid.GetTargetTile(s, a);
+                double r = sPrime.Reward;
+                double qMax = Agent.Actions.Select(sPrime.GetQValue).Max();
+                double td = r + gamma * qMax - q;
+                s.SetQValue(a, q + alpha * td);
+            }
+
+            // Now pick action based on updated Q-values and move
+            ActionEnum chosen = GetAction(s);
+            _agent.State = tileGrid.GetTargetTile(s, chosen);
             _epsilon = Mathf.Max(epsilonEnd, _epsilon - epsilonDecay);
         }
         Debug.Log($"Step {_counter++}, epsilon {_epsilon}");
