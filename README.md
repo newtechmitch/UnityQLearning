@@ -1,6 +1,7 @@
 # Q-Learning: An Introduction
 
-> Based on lecture material from *NAIL133 – Agent-based Learning* (2026) and the accompanying Unity simulation by Dr. Adam Streck.
+> Material accompanying the lecture series *NAIL133 – Agent-based Learning* at Charles University, Prague (2022+) 
+by Dr. Adam Streck.
 
 ---
 
@@ -177,6 +178,8 @@ TD = R(s, a) + γ · max_a' Q(s', a') − Q(s, a)
 
 The TD term combines the **immediate reward** with the **best possible future reward**, making it a direct derivation of the Bellman Equation.
 
+![Temporal Difference](Docs/Temporal%20Difference.png)
+
 ### Implementation in Unity — `QLearn.cs` (update step)
 
 ```csharp
@@ -231,6 +234,8 @@ public class QTile : BaseTile
 
 Each tile in the grid *is* a row of the Q-table. The four Q-values are displayed directly on the tile and colour-coded (green for positive, red for negative).
 
+![Q-Learning initial state](Docs/QLearnBase.png)
+
 ---
 
 ## 6. Exploration vs. Exploitation (ε-Greedy)
@@ -275,6 +280,14 @@ private ActionEnum GetAction(QTile state)
 ```
 
 The `Shuffle()` before `OrderBy` breaks ties randomly when multiple actions share the same Q-value.
+
+Without ε-greedy (pure exploitation from the start), the agent quickly falls into suboptimal paths:
+
+![Q-Learning without epsilon](Docs/QLearnNaive.png)
+
+With ε-greedy exploration and decay, the Q-values converge to the optimal policy:
+
+![Q-Learning with epsilon](Docs/Epsilon.png)
 
 Epsilon is decayed after every step:
 
@@ -350,7 +363,11 @@ Q-Learning is one algorithm within a larger family of **Reinforcement Learning (
 | **Policy type** | Off-policy (Q-Learning: `a'` is always maximised) · On-policy (SARSA: `a'` is selected by the agent's current policy) |
 | **Operator** | Q-value · Advantage `A(s, a) = Q(s, a) − V(s)` |
 
-Q-Learning is an **off-policy, discrete-action** method. Extending it to continuous state/action spaces leads to methods like **Deep Q-Networks (DQN)**, which replace the table with a neural network.
+Q-Learning is an **off-policy, discrete-action** method. Extending it to continuous state/action spaces leads to methods like **Deep Q-Networks (DQN)**, which replace the Q-table with a neural network.
+
+In the grid world example, the Q-table has `|S| × |A| = 40 × 4 = 160` entries — perfectly manageable. But for a game like chess, the state space exceeds `10⁴⁴` positions, making an explicit table impossible to store or fill. A neural network **compresses** this vast mapping into a fixed set of learnable parameters (weights). Instead of storing one value per `(s, a)` pair, the network takes the state as input and outputs Q-values for all actions, generalising across similar states it has never seen before.
+
+![Neural Network](Docs/Neural%20Network.png)
 
 > For a comprehensive list of RL algorithms, see the [Reinforcement Learning Wikipedia page](https://en.wikipedia.org/wiki/Reinforcement_learning). Additional methods such as behavioural cloning are not listed there but are also used in practice. Real-world solutions typically use extended variants or combinations of the above.
 
