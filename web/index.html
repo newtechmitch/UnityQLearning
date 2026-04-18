@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Q-Learning & Bellman — Three.js</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Agent-based Learning — Three.js demo</h1>
+      <nav>
+        <button id="scene-bellman" class="scene-btn">Bellman</button>
+        <button id="scene-qlearn" class="scene-btn">Q-Learning</button>
+      </nav>
+    </header>
+    <main>
+      <div id="stage"></div>
+      <aside id="panel">
+        <section id="controls">
+          <p><strong>Controls</strong></p>
+          <ul>
+            <li><kbd>Space</kbd> — step</li>
+            <li><kbd>A</kbd> — toggle auto-step</li>
+            <li><kbd>R</kbd> — reset</li>
+          </ul>
+          <div class="row">
+            <button id="step-btn">Step</button>
+            <button id="auto-btn">Auto</button>
+            <button id="reset-btn">Reset</button>
+          </div>
+        </section>
+        <section id="params"></section>
+        <section id="stats"></section>
+      </aside>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
