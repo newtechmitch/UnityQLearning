@@ -9,6 +9,7 @@ import {
   TILE_SIZE,
 } from "./types";
 import { BaseTile } from "./tiles/BaseTile";
+import { TextSprite } from "./textSprite";
 
 // TileGrid — port of Unity's TileGrid.cs. Generic over the concrete tile class
 // so the Bellman demo can populate VTiles and the QLearn demo QTiles.
@@ -22,12 +23,38 @@ export class TileGrid<T extends BaseTile> {
   constructor(private readonly make: (type: TileEnum, pos: TilePos) => T) {
     this.root = new THREE.Group();
     this.generate();
+    this.generateAxisLabels();
     // Centre the grid around the world origin.
     this.root.position.set(
       -((BOARD_WIDTH - 1) * TILE_SIZE) / 2,
       ((BOARD_HEIGHT - 1) * TILE_SIZE) / 2,
       0,
     );
+  }
+
+  // Row/column labels outside the grid — matches the "0..7 / 0..4" axis
+  // labels visible in the article's screenshots (Docs/QLearnBase.png etc).
+  private generateAxisLabels(): void {
+    for (let x = 0; x < BOARD_WIDTH; x++) {
+      const label = new TextSprite(String(x), {
+        worldWidth: 0.4,
+        worldHeight: 0.4,
+        color: "#e7eaf0",
+        font: "700 72px Inter, system-ui, sans-serif",
+      });
+      label.sprite.position.set(x * TILE_SIZE, TILE_SIZE * 0.75, 0.1);
+      this.root.add(label.sprite);
+    }
+    for (let y = 0; y < BOARD_HEIGHT; y++) {
+      const label = new TextSprite(String(y), {
+        worldWidth: 0.4,
+        worldHeight: 0.4,
+        color: "#e7eaf0",
+        font: "700 72px Inter, system-ui, sans-serif",
+      });
+      label.sprite.position.set(-TILE_SIZE * 0.75, -y * TILE_SIZE, 0.1);
+      this.root.add(label.sprite);
+    }
   }
 
   private generate(): void {

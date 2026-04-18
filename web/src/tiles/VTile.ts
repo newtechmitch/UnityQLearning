@@ -15,11 +15,11 @@ export class VTile extends BaseTile {
 
     this.valueSprite = new TextSprite(this.formatted(0), {
       worldWidth: 0.8,
-      worldHeight: 0.3,
+      worldHeight: 0.28,
       color: valueColor(0),
       font: "700 64px Inter, system-ui, sans-serif",
     });
-    this.valueSprite.sprite.position.set(0, -TILE_SIZE * 0.05, 0.1);
+    this.valueSprite.sprite.position.set(0, -TILE_SIZE * 0.22, 0.1);
     this.group.add(this.valueSprite.sprite);
   }
 

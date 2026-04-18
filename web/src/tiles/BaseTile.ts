@@ -46,14 +46,14 @@ export abstract class BaseTile {
     const tileMesh = new THREE.Mesh(new THREE.PlaneGeometry(TILE_SIZE, TILE_SIZE), tileMat);
     this.group.add(tileMesh);
 
-    // Reward label (top-left corner).
+    // Reward label (top-centre of the tile, large — matches the article).
     this.rewardLabel = new TextSprite(this.reward.toFixed(4), {
-      worldWidth: 0.45,
-      worldHeight: 0.18,
+      worldWidth: 0.8,
+      worldHeight: 0.28,
       color: valueColor(this.reward),
-      font: "500 40px Inter, system-ui, sans-serif",
+      font: "700 64px Inter, system-ui, sans-serif",
     });
-    this.rewardLabel.sprite.position.set(-TILE_SIZE * 0.28, TILE_SIZE * 0.38, 0.1);
+    this.rewardLabel.sprite.position.set(0, TILE_SIZE * 0.24, 0.1);
     this.group.add(this.rewardLabel.sprite);
   }
 }
