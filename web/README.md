@@ -3,6 +3,8 @@
 TypeScript + Three.js port of the Unity demos in this repo. Same grid world,
 same update rules; runs entirely in the browser — no Unity required.
 
+**Live demo:** https://newtechmitch.github.io/UnityQLearning/
+
 ## Run
 
 ```bash
